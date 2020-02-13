@@ -6,7 +6,9 @@ i-FWER is a multiple testing method with FWER control that allows a human analys
 
 ## Functions
 i-FWER.R:    the i-FWER algorithm
+
 sim_dat.R:   simulated data
+
 reproduce.R: reproduce plots in paper
 
 ## Dependencies
