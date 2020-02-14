@@ -1,3 +1,5 @@
+# conduct one experiment
+# para_vary: a list of parameters that are different from the default in input.R file
 single_experiment = function(para_vary){
   source("input.R", local = TRUE)
   for (single_para_vary in para_vary) {

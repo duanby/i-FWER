@@ -36,7 +36,7 @@ save(result_railway, file = "result/tent-railway.Rdata")
 
 
 ############### Figure 8 ###############
-# compare i-FWER-tent with i-FWER-railway when varying null mean
+# compare i-FWER-tent with i-FWER-gap when varying alternative mean
 mu_1_seq = 1:5
 result_gap = list()
 for (i in 1:length(mu_1_seq)) {
