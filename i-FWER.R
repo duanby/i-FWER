@@ -10,9 +10,9 @@ i_FWER = function(P, x, alpha, mask_fun, mask_para, S_model = TRUE, d = 5, delta
   h_g = mask_gen(P, mask_fun, mask_para); h = h_g$h; g = h_g$g
   if(mask_fun == "gap") {mask_ind = !(h == 0)}
   
-  # start with all the hypotheses in the rejection set
+  
   n = length(P)
-  rej_ind = rep(TRUE, n)
+  rej_ind = rep(TRUE, n)  ## start with all the hypotheses in the rejection set
   r_neg = sum(h[rej_ind] == -1)
   fwer_est = ifelse(mask_fun %in% c("tent", "railway"),
                     1 - (1 - mask_para)^(r_neg + 1),
@@ -21,8 +21,7 @@ i_FWER = function(P, x, alpha, mask_fun, mask_para, S_model = TRUE, d = 5, delta
   while (fwer_est > alpha & any(rej_ind)) {
     masked_P = g*rej_ind + P*(1 - rej_ind)
     if (S_model) { 
-      #update S score every 100 iterations
-      if (iter %% 100 == 0) {
+      if (iter %% 100 == 0) { ## update S score every 100 iterations
         if (mask_fun %in% c("tent", "railway")) {
           S = em_mixture(masked_P, x, rej_ind, mask_fun, mask_para)
         } else {
@@ -77,9 +76,8 @@ mask_gen = function(P, mask_fun, mask_para){
 # mask_para: a vector of parameters in the masking function
 # iter:      number of EM iterations, default to five
 em_mixture = function(masked_P, x, rej_ind, mask_fun, mask_para, iter = 5, df = 3){
-  masked_P[masked_P == 0] = 10^(-8)  #avoid Inf in calculation
-  # translate p-values into Z-scores
-  masked_Z = qnorm(1 - masked_P)
+  masked_P[masked_P == 0] = 10^(-8)  ## avoid Inf in calculation
+  masked_Z = qnorm(1 - masked_P) ## translate p-values into Z-scores
   if (mask_fun == "tent") {
     inv_Z = qnorm((1 - mask_para)/mask_para*(1 - pnorm(masked_Z)))
   } else if (mask_fun == "railway") {
@@ -89,8 +87,7 @@ em_mixture = function(masked_P, x, rej_ind, mask_fun, mask_para, iter = 5, df = 
   }
   inv_Z[!rej_ind] = 0
   
-  # initial values for parameters in the EM algorithm
-  pi_set = rep(0.1, length(masked_P)); mu = 1
+  pi_set = rep(0.1, length(masked_P)); mu = 1 ## initial values for parameters in the EM algorithm
   for (i in 1:iter) {
     mu = mask_para %>% ifelse(mask_fun %in% c("tent", "railway"), ., .[1]) %>%
       max(mu, qnorm(1 - .) + 0.5) 
