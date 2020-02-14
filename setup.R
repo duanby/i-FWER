@@ -10,3 +10,4 @@ load_silently = function(packages){
   invisible()
 }
 load_silently(c("magrittr", "splines", "robustbase", "ggplot2"))
+
