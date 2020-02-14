@@ -9,7 +9,7 @@ i-FWER.R:    the i-FWER algorithm
 
 sim_dat.R:   simulated data
 
-reproduce.R: reproduce plots in paper
+reproduce.R: reproduce experiments in the paper
 
 ## Dependencies
 The code was tested on macOS using R (version 3.6.0) and the following packages:
