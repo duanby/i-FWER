@@ -12,7 +12,7 @@ sim_dat.R:   simulated data
 reproduce.R: reproduce plots in paper
 
 ## Dependencies
-The code was tested on ISO using R and the following packages:
+The code was tested on macOS using R (version 3.6.0) and the following packages:
 * magrittr
 * splines
 * robustbase
