@@ -1,6 +1,6 @@
 source("setup.R")
 colSes = function(m) {apply(m, 2, sd)/sqrt(nrow(m))} #standard error
-
+dir.create("figure")
 ######################################################
 ##################### Figure 5 #######################
 load(file = "result/tent-sidak-10.Rdata")
