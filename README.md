@@ -1,8 +1,8 @@
 # i-FWER
-Familywise error rate control via interactive unmasking
+Familywise error rate control via interactive unmasking (https://arxiv.org/abs/2002.08545).
 
 ## Overview
-i-FWER is a multiple testing method with FWER control that allows a human analyst to look at (partial) data information and interactively adjust the procedure of excluding possible nulls.
+The i-FWER test is a multiple testing method with FWER control that allows a human analyst to look at (partial) data information and interactively adjust the procedure of excluding possible nulls. 
 
 ## Functions
 i-FWER.R:    the i-FWER algorithm
